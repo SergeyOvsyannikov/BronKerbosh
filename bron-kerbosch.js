@@ -27,8 +27,11 @@ function notCondition(candidates, not) {
                 condition = false;
             }
         })
+        if(condition) {
+            return false;
+        }
     })
-    return condition;
+    return true;
 }
 
 function findCandidate(_vertex) {
@@ -53,9 +56,8 @@ function BK (candidates, not) {
         let newNot = not.filter(findCandidate(vertex));
         let newCandidates = candidates.filter(findCandidate(vertex));
         if(!newCandidates.length && !newNot.length) {
-            result.push(compsub);
+            result.push([...compsub]);
             console.log('compsub: ', [...compsub]);
-            return;
         } else {
             BK(newCandidates, newNot);
         }
